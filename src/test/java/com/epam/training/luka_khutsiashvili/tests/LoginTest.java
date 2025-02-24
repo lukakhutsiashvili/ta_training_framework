@@ -6,7 +6,8 @@ import com.epam.training.luka_khutsiashvili.models.User;
 import com.epam.training.luka_khutsiashvili.models.UserFactory;
 import com.epam.training.luka_khutsiashvili.pages.LoginPage;
 import com.epam.training.luka_khutsiashvili.pages.ProductsPage;
-import com.epam.training.luka_khutsiashvili.utils.ConfigLoader;
+import com.epam.training.luka_khutsiashvili.config.ConfigLoader;
+import com.epam.training.luka_khutsiashvili.config.SelenideConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +26,7 @@ public class LoginTest {
   @Parameters({"browser", "environment"})
   public void setUp(String browser, String environment) {
     logger.info("Setting up tests with browser: {} and environment: {}", browser, environment);
+    SelenideConfig.configure();
     ConfigLoader.loadProperties(environment);
     WebDriver webDriver = DriverFactory.initializeDriver(browser);
     WebDriverRunner.setWebDriver(webDriver);

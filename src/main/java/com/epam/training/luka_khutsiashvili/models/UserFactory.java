@@ -1,6 +1,6 @@
 package com.epam.training.luka_khutsiashvili.models;
 
-import com.epam.training.luka_khutsiashvili.utils.ConfigLoader;
+import com.epam.training.luka_khutsiashvili.config.ConfigLoader;
 
 public class UserFactory {
 

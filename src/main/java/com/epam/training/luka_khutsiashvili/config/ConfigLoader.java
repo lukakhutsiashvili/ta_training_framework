@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.utils;
+package com.epam.training.luka_khutsiashvili.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
