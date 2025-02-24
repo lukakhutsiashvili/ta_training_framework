@@ -65,6 +65,9 @@ Captures screenshots on test failures for easier debugging.
 ###  **Logs**
 Daily log files stored in the logs/ folder at the project root for tracking and debugging.
 
+###  **Selenide Reports**
+Detailed execution reports are automatically generated and stored in the target/selenide-reports/ directory.
+
 ---
 
 ## **Best Practices Implemented**
