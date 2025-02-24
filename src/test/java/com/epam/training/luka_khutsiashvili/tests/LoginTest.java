@@ -36,21 +36,22 @@ public class LoginTest {
   }
 
   @Test(description = "Verify that a user can log in with valid credentials.")
-  public void testValidLogin() {
-    logger.info("Starting valid login test.");
+  @Parameters({"browser", "environment"})
+  public void testValidLogin(@Optional("chrome") String browser, @Optional("dev") String environment) {
+    logger.info("Starting valid login test for {} in {} environment", browser, environment);
     User standardUser = UserFactory.getStandardUser();
     loginPage.login(standardUser.getUsername(), standardUser.getPassword());
     productsPage.getProductsTitle().shouldBe(visible);
-    logger.info("Valid login test passed.");
+    logger.info("Valid login test passed for {} in {} environment.", browser, environment);
   }
 
   @Test(description = "Verify screenshot capture on test failure.")
-  public void testScreenshotOnFailureScenario() {
-    logger.info("Starting intentional failure test for screenshot validation.");
+  @Parameters({"browser", "environment"})
+  public void testScreenshotOnFailureScenario(@Optional("chrome") String browser, @Optional("dev") String environment) {
+    logger.info("Starting intentional failure test for screenshot validation on {} in {} environment.", browser, environment);
     User lockedOutUser = UserFactory.getInvalidUser();
     loginPage.login(lockedOutUser.getUsername(), lockedOutUser.getPassword());
-
-    productsPage.getProductsTitle().shouldBe(visible);
+    productsPage.getProductsTitle().shouldBe(visible); // Expected to fail
     logger.warn("This test is expected to fail to verify screenshot capture.");
   }
 
