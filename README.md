@@ -62,6 +62,9 @@ Loads environment-specific properties dynamically.
 ###  **ScreenshotUtils**
 Captures screenshots on test failures for easier debugging.
 
+###  **Logs**
+Daily log files stored in the logs/ folder at the project root for tracking and debugging.
+
 ---
 
 ## **Best Practices Implemented**
