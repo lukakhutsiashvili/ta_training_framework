@@ -18,6 +18,14 @@ A robust and flexible Test Automation Framework built using **Java**, **TestNG**
 
 ---
 
+## **Design Patterns Implemented**
+
+- **Singleton**: Ensures a single instance of key classes like `ConfigLoader` and WebDriver management (`DriverFactory`).
+- **Factory Method**: Dynamically initializes browsers through the `BrowserFactory` interface with specific implementations (e.g., `ChromeDriverFactory`, `FirefoxDriverFactory`).
+- **Decorator**: Enhances element interactions with additional functionalities like logging and highlighting, without modifying existing code (`ElementDecorator`, `LoggingDecorator`, `HighlightingDecorator`).
+- **Strategy** *(Bonus)*: Provides flexible login strategies (`LoginStrategy`, `StandardLoginStrategy`).
+
+
 ## **Test Execution**
 
 ### ✅ Run **Smoke Suite**
@@ -50,11 +58,15 @@ Environment-specific properties are located in:
 
 ### 🧩 **LoginTest**
 Tests the login functionality with different scenarios:
-- ✅ Successful login with valid credentials.  
+- ✅ Successful login with valid credentials. *(Implemented using Strategy pattern for flexibility)*  
 - 🚫 Login failure with invalid credentials.   
 
 ### **DriverFactory**
-Initializes browsers based on provided parameters and ensures proper WebDriver management.
+- Initializes browsers using the **Factory Method** pattern.  
+- Manages WebDriver lifecycle through a **Singleton** approach for resource safety.
+
+### **LoginPage**
+- Uses the **Decorator** pattern to enhance element interactions (logging & highlighting).
 
 ###  **ConfigLoader**
 Loads environment-specific properties dynamically.
@@ -72,9 +84,8 @@ Detailed execution reports are automatically generated and stored in the target/
 
 ## **Best Practices Implemented**
 
--  **Code Reusability**: POM & Business Models prevent code duplication.  
--  **Flexibility**: Run tests with different browsers and environments using parameters.  
--  **Maintainability**: Environment properties & test data are externalized.  
--  **Scalability**: Easily add new test cases or environments without major code changes.  
--  **CI/CD Integration**: Ready for pipeline execution with parameterized builds.  
-
+- **Code Reusability**: POM, Business Models, and Design Patterns prevent code duplication.  
+- **Flexibility**: Run tests with different browsers, environments, and login strategies using parameters.  
+- **Maintainability**: Adherence to **S.O.L.I.D. principles** and the use of patterns improve code organization.  
+- **Scalability**: Easily extend functionality with new browsers, login strategies, or decorators.  
+- **CI/CD Integration**: Ready for pipeline execution with parameterized builds.  
