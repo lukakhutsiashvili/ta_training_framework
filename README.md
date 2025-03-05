@@ -14,7 +14,8 @@ A robust and flexible Test Automation Framework built using **Java**, **TestNG**
 - ✅ **Logging** - Detailed logs using **Log4j2** (console + daily rolling file logs).  
 - ✅ **Screenshot Capture** - Automatic screenshot on test failures with log references.  
 - ✅ **Element Highlighting** - Visual feedback during test execution.  
-- ✅ **CI/CD Ready** - Flexible parameters for seamless integration.  
+- ✅ **CI/CD Ready** - Flexible parameters for seamless integration.
+- ✅ **Report Portal Integration** - Automatic test execution reports with detailed logs and attached screenshots.
 
 ---
 
@@ -88,4 +89,5 @@ Detailed execution reports are automatically generated and stored in the target/
 - **Flexibility**: Run tests with different browsers, environments, and login strategies using parameters.  
 - **Maintainability**: Adherence to **S.O.L.I.D. principles** and the use of patterns improve code organization.  
 - **Scalability**: Easily extend functionality with new browsers, login strategies, or decorators.  
-- **CI/CD Integration**: Ready for pipeline execution with parameterized builds.  
+- **CI/CD Integration**: Ready for pipeline execution with parameterized builds.
+- **Automated Test Reporting**: Reports with detailed logs and screenshots are available in Report Portal.
