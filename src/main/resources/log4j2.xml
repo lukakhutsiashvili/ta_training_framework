@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
@@ -14,12 +13,17 @@
         <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
       </Policies>
     </RollingFile>
+
+    <ReportPortalLog4j2Appender name="ReportPortalAppender">
+      <PatternLayout pattern="%logger{36} - %msg%n%throwable"/>
+    </ReportPortalLog4j2Appender>
   </Appenders>
 
   <Loggers>
     <Root level="info">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="FileLogger"/>
+      <AppenderRef ref="ReportPortalAppender"/>
     </Root>
   </Loggers>
 </Configuration>

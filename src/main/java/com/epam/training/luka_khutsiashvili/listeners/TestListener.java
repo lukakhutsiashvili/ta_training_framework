@@ -1,51 +1,45 @@
 package com.epam.training.luka_khutsiashvili.listeners;
 
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
 import org.testng.ITestResult;
 import com.epam.training.luka_khutsiashvili.factory.DriverFactory;
 import com.epam.training.luka_khutsiashvili.utils.ScreenshotUtils;
 
-public class TestListener implements ITestListener {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+
+public class TestListener extends ReportPortalTestNGListener {
 
   private static final Logger logger = LogManager.getLogger(TestListener.class);
 
   @Override
   public void onTestFailure(ITestResult result) {
     WebDriver driver = DriverFactory.getDriver();
-    if (driver != null) {
-      String screenshotPath = ScreenshotUtils.takeScreenshot(driver, result.getName());
-      logger.error("Test '{}' failed. Screenshot saved at: {}", result.getName(), screenshotPath);
-    } else {
+    if (driver == null) {
       logger.error("Test '{}' failed, but WebDriver was null. Screenshot not taken.", result.getName());
+      return;
     }
-  }
 
-  @Override
-  public void onTestStart(ITestResult result) {
-    logger.info("Test '{}' started.", result.getName());
-  }
+    String screenshotPath = ScreenshotUtils.takeScreenshot(driver, result.getName());
+    if (screenshotPath == null) {
+      logger.error("Screenshot capture failed for test '{}'", result.getName());
+      return;
+    }
 
-  @Override
-  public void onTestSuccess(ITestResult result) {
-    logger.info("Test '{}' passed.", result.getName());
-  }
+    try {
+      byte[] fileContent = Files.readAllBytes(Paths.get(screenshotPath));
+      String base64Screenshot = Base64.getEncoder().encodeToString(fileContent);
 
-  @Override
-  public void onTestSkipped(ITestResult result) {
-    logger.warn("Test '{}' skipped.", result.getName());
-  }
+      logger.info("RP_MESSAGE#BASE64#{}#{}", base64Screenshot, "Screenshot on Failure");
+    } catch (IOException e) {
+      logger.error("Failed to attach screenshot to ReportPortal: {}", e.getMessage());
+    }
 
-  @Override
-  public void onStart(ITestContext context) {
-    logger.info("Test suite '{}' started.", context.getName());
-  }
-
-  @Override
-  public void onFinish(ITestContext context) {
-    logger.info("Test suite '{}' finished.", context.getName());
+    super.onTestFailure(result);
   }
 }
