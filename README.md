@@ -10,7 +10,7 @@ A robust and flexible Test Automation Framework built using **Java**, **TestNG**
 - ✅ **Business Models (UserFactory)** - Centralized test data management.  
 - ✅ **Environment-Specific Properties** - Easily switch between **dev** and **qa** environments.  
 - ✅ **TestNG XML Suites** - Organized **Smoke** and **Regression** test execution.
-- ✅ **Cucumber BDD Support** - Enables behavior-driven development with structured feature files and step definitions.
+- ✅ **Cucumber BDD Support** - Behavior-driven development with structured feature files and step definitions.
 - ✅ **Parallel Test Execution** - Run tests across multiple browsers and environments simultaneously.  
 - ✅ **Logging** - Detailed logs using **Log4j2** (console + daily rolling file logs).  
 - ✅ **Screenshot Capture** - Automatic screenshot on test failures with log references.  
